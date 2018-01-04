@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
+  //<link type="text/javascript" src="javascript.js">
 </head>
 <body>
 
@@ -57,8 +58,19 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
 
+<script>
+  window.addEventListener('keydown', function(element) {
+    //meed to write out definitions of const, query selector, and attribute selector
+    //write out es6 template
+    //substitute for keycode? code? - Originially console.log(keyCode) did not work
+    const audio = document.querySelector(`audio[data-key="${element.keyCode}"]`);
+    // stop the function from offuring
+    //check if the variabl is defined and if it is not -
+    if (!audio) return // stop function from running
+    console.log(audio);
+    audio.play();
+});
 </script>
 
 
