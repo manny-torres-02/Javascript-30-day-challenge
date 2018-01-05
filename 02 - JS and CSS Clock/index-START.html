@@ -9,6 +9,10 @@
 
     <div class="clock">
       <div class="clock-face">
+        <!-- hands stacked on each other, apply a rotate to the hands in acordance to the time
+        Need to to rotate on rh side instead of in the middle
+
+        -->
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
@@ -62,13 +66,29 @@
       background:black;
       position: absolute;
       top:50%;
+    /* transform orgigin default - 50% - Rotate in middle
+    100% make it rotate on the right side
+    Rotate point */
+      transform-origin: 100%;
+      /* transform will rotate the whole item */
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
   <script>
 
+  function setDate() {
+  const now = new Date();
+  const seconds = now.getSeconds();
+  //seconds /60 gives the percentage out of 100 - then we miltiply by 360 to give us the position
+  const secondsDegress = (seconds/60)*360;
+  console.log(seconds);
 
+  }
+  setInterval(setDate, 1000);
   </script>
 </body>
 </html>
