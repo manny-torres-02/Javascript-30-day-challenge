@@ -65,11 +65,21 @@
     //write out es6 template
     //substitute for keycode? code? - Originially console.log(keyCode) did not work
     const audio = document.querySelector(`audio[data-key="${element.keyCode}"]`);
+
+    //creat visual effect - selecting key element - .key
+    const key = document.querySelector(`.key[data-key="${element.keyCode}"]`);
+
     // stop the function from offuring
     //check if the variabl is defined and if it is not -
     if (!audio) return // stop function from running
-    console.log(audio);
+    console.log(key);
+    //call play on audio element in progress of playing - wont play again during that in progress step
+    //hit in succession - need to rewind it to the start
+    audio.currentTime=0;
     audio.play();
+
+    //go over classlist - Add - CSS Class
+    key.classList.add('playing')
 });
 </script>
 

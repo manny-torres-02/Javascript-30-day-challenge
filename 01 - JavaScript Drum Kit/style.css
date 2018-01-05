@@ -23,6 +23,7 @@ body,html {
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
+  /* transition property */
   transition: all .07s ease;
   width: 10rem;
   text-align: center;
@@ -30,7 +31,7 @@ body,html {
   background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
 }
-
+/* change size for small time, change colore and box shadow */
 .playing {
   transform: scale(1.1);
   border-color: #ffc600;
