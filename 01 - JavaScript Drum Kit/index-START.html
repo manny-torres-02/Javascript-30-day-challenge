@@ -60,7 +60,7 @@
 
 
 <script>
-  window.addEventListener('keydown', function(element) {
+  function playSound(element) {
     //meed to write out definitions of const, query selector, and attribute selector
     //write out es6 template
     //substitute for keycode? code? - Originially console.log(keyCode) did not work
@@ -72,15 +72,45 @@
     // stop the function from offuring
     //check if the variabl is defined and if it is not -
     if (!audio) return // stop function from running
-    console.log(key);
+    //console.log(key);
     //call play on audio element in progress of playing - wont play again during that in progress step
     //hit in succession - need to rewind it to the start
     audio.currentTime=0;
+
+    //plays sound when key is pressed down
     audio.play();
 
     //go over classlist - Add - CSS Class
+    //add class playing - does animation and keeps it there
     key.classList.add('playing')
+}
+
 });
+
+function removeTransition(element) {
+  //many different transitions appear - select by property name
+  if (element.propertyName !=='transform') return;//skip the event if it is not a transform
+  //console.log(element.propertyName); // console log transfrom- property being ended
+
+  //remove transition playing class
+    this.classList.remove('playing') // this keyword equal to whatever gets called against it
+    //class playing added - once the transition ends - the playing class is removed
+}
+
+
+//remove class - transition end event
+//listen on each keey for event that has happened - need to listen for each key when the transition endevent happens
+const keys = document.querySelectorAll('.key') // array of all keys tied to sound
+
+//listen for end of transition event on each key
+//when have an array of elements - cannot listen on all of them at the same time
+//must loop through each separate one and attache the event addEventListener
+//each key will add the eventlistener named transition end added to it, then the transition will be removed through the
+//remove transition function
+keys.forEach(key => key.addEventListener( 'transitionend', removeTransition ));
+
+window.addEventListener('keydown', playSound)
+
 </script>
 
 
