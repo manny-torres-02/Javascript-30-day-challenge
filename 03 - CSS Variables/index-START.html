@@ -21,7 +21,27 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+  /* CSS Variables - When updated with CSS - they are updated everywhere on the page
+    */
+/* Declare on some sort of element - Root = Highest Level
+Highest level values to be declared inside of variable
 
+ */
+:root {
+   --base : #ffC600;
+   --spacing:10px;
+   --blur: 10px;
+}
+
+img {
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur))
+}
+/*JAvascript HL variable */
+.hl {
+  color: var(--base);
+ }
     /*
       misc styles, nothing to do with CSS variables
     */
