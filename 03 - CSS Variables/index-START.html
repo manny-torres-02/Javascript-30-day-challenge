@@ -9,6 +9,7 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
+    <!-- Data attribute attached - to set value and the suffix of the variable -->
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
@@ -68,12 +69,24 @@ img {
    const inputs = document.querySelectorAll ('.controls input')
 
    function handleUpdate() {
-     console.log(this.value);
+    // console.log(this.value);
+    const suffix = this.dataset.sizing || '';
+    /*update css Variable
+    Select the doc = root
+    select the propert - base - spacing - blur
+    since backticks are used, we can place the variable selected there.
+    */
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
 
    }
    /* for each input where the value is changed, go through the function handleUpdate to
    update the page */
-   inputs.forEach(input => input.addEventListener('change', handleUpdate) )
+   inputs.forEach(input =>  input.addEventListener('change', handleUpdate) )
+   inputs.forEach(input =>  input.addEventListener('mousemove', handleUpdate) )
+   /*Using CSS VAr - lets you update that VAR wherever the element is placed
+   any selectors in that element that reference that variable will be using it
+   can be scoped as well -Mind the Cascade  */
+
   </script>
 
 </body>
