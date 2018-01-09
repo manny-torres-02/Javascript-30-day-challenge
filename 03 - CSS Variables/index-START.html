@@ -25,7 +25,7 @@
     */
 /* Declare on some sort of element - Root = Highest Level
 Highest level values to be declared inside of variable
-
+When we use javascript to update CSS - CSS will update automatically
  */
 :root {
    --base : #ffC600;
@@ -65,6 +65,15 @@ img {
   </style>
 
   <script>
+   const inputs = document.querySelectorAll ('.controls input')
+
+   function handleUpdate() {
+     console.log(this.value);
+
+   }
+   /* for each input where the value is changed, go through the function handleUpdate to
+   update the page */
+   inputs.forEach(input => input.addEventListener('change', handleUpdate) )
   </script>
 
 </body>
