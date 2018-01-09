@@ -79,14 +79,26 @@
   </style>
 
   <script>
+//set second hand - pull into function
+  const secondHand = document.querySelector('.second-hand');
+  const minuteHand = document.querySelector('.min-hand');
+  const hourHand = document.querySelector(`.hour-hand`);
 
   function setDate() {
   const now = new Date();
   const seconds = now.getSeconds();
+  const minutes = now.getMinutes();
+  const hours = now.getHours();
+//  console.log(hours)
   //seconds /60 gives the percentage out of 100 - then we miltiply by 360 to give us the position
-  const secondsDegress = (seconds/60)*360;
-  console.log(seconds);
-
+  //offset by 90 degrees so we can start at 12 -Need to ad 90 to make it tick in right area
+  const secondsDegrees = ((seconds/60)*360)+90;
+  const minutesDegrees = ((minutes/60)*360)+90;
+  const hoursDegrees = ((hours/12)*360)+90;
+  console.log(hoursDegrees);
+  secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+  minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+  hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
   }
   setInterval(setDate, 1000);
   </script>
