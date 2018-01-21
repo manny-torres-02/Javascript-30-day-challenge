@@ -31,29 +31,117 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    //pass function, function loop through array, give us inventor
+    const fifteen = inventors.filter(function (inventor) {
+      if (inventor.year >= 1500&& inventor.year<1600){
+      return true; //return true - if the value is true, we will keep it
+    }
+  });
+  //  console.table(fifteen);
+    /* Arrow function version - will return value if both values of true
+    const fifteen = inventors.filter( inventor=>  inventor.year 1500&& inventor.year<1600)
+
+    */
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    //map takes in array, does something to it, returns new array of same length - returns same amount of items originally given
+    //resolve space issue - temmplate literal with backticks or concatenate a space
+    const fullNames = inventors.map(inventor=> `${inventor.first}`+`${inventor.last}`)
+  //  console.log(fullNames)  ;
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const ordered = inventors.sort(function (a,b){
+      if (a.year>b.year) {
+        return 1;
+      } else {
+        return -1;
+      }
+    })
+    //if table is very long - can cut it down
+    /*const ordered = inventors.sort((a,b) => a.year>b.year? 1:-1)*/
 
+
+    //console.table(ordered);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
-
+    //build something on each iteration
+    // reduce will give a running total
+    const totalYears = inventors.reduce((total, inventor) => {
+      //takes the total - running amount - add the amount of years the inventor has lived
+      return total + (inventor.passed - inventor.year);
+    }, 0) //sets total equal to 0
+    //console.log(totalYears)
     // 5. Sort the inventors by years lived
+    const old =inventors.sort(function(a,b) {
+      if ((a.passed-a.year)>(b.passed-b.year)) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+//console.table(old);
 
+//or
+const oldest = inventors.sort(function(a,b) {
+  //create variables  for use in the function
+  const lastGuy = a.passed-a.year;
+  const nextGuy =b.passed-b.year;
+  // ternary operator to shorten it up
+  // return lastGuy>nextGuy ? -1:1;
+  if (lastGuy>nextGuy) {
+    return -1;
+  } else {
+    return 1;
+  }
+})
+//console.table(oldest);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+  //  const category = document.querySelector('.mw-category');
+    //call query selector agains existing dom element to look inside of it
+    //const links =  Array.from(category.querySelectorAll('a'));
+    //spread syntax used below - Take everyo item out of interable and place it in containing array
+    //const links =  [...category.querySelectorAll('a')];
+//take in links and kick out lis  t of names - needs to be array not node list
+    //const de = links
+      //.map(link=link.textContent)
+      //.filter(streetName => streetName.includes('de'))
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alphabetical = people.sort(function(lastOne, nextOne) {
+
+    //convert into first and last name split the comma and space
+    //destructure the array - [last, first]
+    const [alast, afirst]= lastOne.split(', ');
+    const [blast, bfirst] = nextOne.split(', ')
+
+    return alast>blast ? 1:-1;
+
+    });
+    console.log(alphabetical)
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'feet', 'feet', 'car', 'van', 'car', 'truck', ];
 
+    const countEvent = data.reduce(function(obj, item) {
+      //does the object exist?
+      //no object of item - then we have to create it
+      if(!obj[item]) {
+        obj[item] = 0;
+      } // if object already exists, then we increment.
+      obj[item]++;
+      return obj
+    },
+    //leave empty object - this will be a placeholder for separate instances as they occur
+    {}
+    )
+    console.log(countEvent);
   </script>
 </body>
 </html>
